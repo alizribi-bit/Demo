@@ -1,3 +1,4 @@
+import 'package:demo/features/app/auth/login.dart';
 import 'package:flutter/material.dart';
 
 class LancherApp extends StatefulWidget {
@@ -10,8 +11,9 @@ class LancherApp extends StatefulWidget {
 class _LancherAppState extends State<LancherApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(),
+    return const Scaffold(
+      //login pour le moment
+      body: LogIn(),
     );
   }
 }

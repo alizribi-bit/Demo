@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../main.dart';
+import '../lancher.dart';
 
 class SeplashSeceen extends StatefulWidget {
   const SeplashSeceen({super.key});
@@ -22,7 +22,7 @@ class _SeplashSeceenState extends State<SeplashSeceen> {
       () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => const MyHomePage(),
+            builder: (_) => const LancherApp(),
           ),
         );
       },
@@ -53,7 +53,28 @@ class _SeplashSeceenState extends State<SeplashSeceen> {
                   ],
                 ),
               ),
-              child: const CircularProgressIndicator.adaptive(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Bienvenu",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1,
+                        color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height * .04,
+                  ),
+                  const Icon(
+                    Icons.home_filled,
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
             ),
           )
         : Scaffold(
