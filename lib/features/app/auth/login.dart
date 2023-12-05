@@ -1,5 +1,7 @@
+import 'package:demo/features/Firebase_Auth_Services/FirebaseAuthServeces_Email.dart';
 import 'package:demo/features/Secreens/homeSecreen.dart';
 import 'package:demo/features/app/auth/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,8 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   TextEditingController _emailcontroller = TextEditingController();
   TextEditingController _passwordcontroller = TextEditingController();
+
+  FirebaseAuthServicesEmailPassword _auth = FirebaseAuthServicesEmailPassword();
 
   @override
   void dispose() {
@@ -74,10 +78,8 @@ class _LogInState extends State<LogIn> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Home()),
-                          );
+                          _signIn(
+                              _emailcontroller.text, _passwordcontroller.text);
                         },
                         child: SizedBox(
                           width: MediaQuery.sizeOf(context).width * .8,
@@ -151,5 +153,19 @@ class _LogInState extends State<LogIn> {
         prefixIcon: icon,
       ),
     );
+  }
+
+  void _signIn(email, password) async {
+    User? user = await _auth.SignInWithEmailAndPasswor(email, password);
+
+    if (user != null) {
+      // ignore: use_build_context_synchronously
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Home()),
+      );
+    } else {
+      print("error");
+    }
   }
 }
