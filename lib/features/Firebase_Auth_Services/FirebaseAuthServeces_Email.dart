@@ -34,5 +34,6 @@ class FirebaseAuthServicesEmailPassword {
         print('Wrong password provided for that user.');
       }
     }
+    return null;
   }
 }
