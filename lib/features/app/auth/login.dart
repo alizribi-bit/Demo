@@ -1,9 +1,12 @@
 import 'package:demo/features/Firebase_Auth_Services/FirebaseAuthServeces_Email.dart';
-import 'package:demo/features/Secreens/homeSecreen.dart';
+import 'package:demo/features/Secreens/introductionScreenHome.dart';
 import 'package:demo/features/app/auth/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../Providers/userProvider.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -159,10 +162,11 @@ class _LogInState extends State<LogIn> {
     User? user = await _auth.SignInWithEmailAndPasswor(email, password);
 
     if (user != null) {
+      context.read<UserProvider>().email = user.email!;
       // ignore: use_build_context_synchronously
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Home()),
+        MaterialPageRoute(builder: (context) => IntroductionScreenHome()),
       );
     } else {
       print("error");

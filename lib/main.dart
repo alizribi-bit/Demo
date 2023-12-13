@@ -1,5 +1,8 @@
+import 'package:demo/Providers/userProvider.dart';
+import 'package:demo/constans/connstans.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'features/app/seplashSecreen/seplash_secreen.dart';
 
@@ -14,10 +17,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: SeplashSeceen(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => UserProvider())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        //title: 'Flutter Demo',
+        theme: ThemeData(
+            primaryColor: Constants.kPrimary,
+            primarySwatch: Constants.kSwatchColor,
+            scaffoldBackgroundColor: Colors.white,
+            fontFamily: 'Poppins'),
+        home: SeplashSeceen(),
+      ),
     );
   }
 }
